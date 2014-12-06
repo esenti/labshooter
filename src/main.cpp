@@ -9,12 +9,22 @@ int main()
 
     sf::Clock clock;
 
+    sf::Texture playerTexture;
+    playerTexture.loadFromFile("assets/player.png");
+
+    sf::Texture tileTexture;
+    tileTexture.loadFromFile("assets/tile.png");
+
+    sf::Sprite playerSprite;
+    playerSprite.setTexture(playerTexture);
+
+    sf::Sprite tileSprite;
+    tileSprite.setTexture(tileTexture);
+
     // run the program as long as the window is open
     while (window.isOpen())
     {
         sf::Time elapsed = clock.restart();
-
-        std::cout << elapsed.asMilliseconds() << std::endl;
 
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
@@ -25,11 +35,27 @@ int main()
                 window.close();
         }
 
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            playerSprite.move(0.5 * elapsed.asMilliseconds(), 0);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+            playerSprite.move(-0.5 * elapsed.asMilliseconds(), 0);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            playerSprite.move(0, -0.5 * elapsed.asMilliseconds());
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+            playerSprite.move(0, 0.5 * elapsed.asMilliseconds());
+        }
+
+        tileSprite.setPosition(50, 50);
+
         // clear the window with black color
-        window.clear(sf::Color::Black);
+        window.clear(sf::Color::White);
 
         // draw everything here...
-        // window.draw(...);
+        window.draw(playerSprite);
+        window.draw(tileSprite);
 
         // end the current frame
         window.display();
