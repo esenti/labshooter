@@ -2,6 +2,16 @@
 
 #include <iostream>
 
+void move(float x, float y, sf::Sprite& sprite, sf::Sprite obstacle)
+{
+    sprite.move(x, y);
+
+    if(sprite.getGlobalBounds().intersects(obstacle.getGlobalBounds()))
+    {
+        sprite.move(-x, -y);
+    }
+}
+
 int main()
 {
     // create the window
@@ -36,16 +46,16 @@ int main()
         }
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-            playerSprite.move(0.5 * elapsed.asMilliseconds(), 0);
+            move(0.5 * elapsed.asMilliseconds(), 0, playerSprite, tileSprite);
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-            playerSprite.move(-0.5 * elapsed.asMilliseconds(), 0);
+            move(-0.5 * elapsed.asMilliseconds(), 0, playerSprite, tileSprite);
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-            playerSprite.move(0, -0.5 * elapsed.asMilliseconds());
+            move(0, -0.5 * elapsed.asMilliseconds(), playerSprite, tileSprite);
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-            playerSprite.move(0, 0.5 * elapsed.asMilliseconds());
+            move(0, 0.5 * elapsed.asMilliseconds(), playerSprite, tileSprite);
         }
 
         tileSprite.setPosition(50, 50);
