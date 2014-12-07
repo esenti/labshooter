@@ -14,8 +14,11 @@
 class Player : public Entity
 {
 public:
-    Player();
+    Player(int i);
     virtual ~Player();
     virtual void Update(float dt) override;
+
+protected:
+	int index;
 };
 #endif /* defined(__labshooter__Player__) */
