@@ -20,7 +20,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game window");
 
     sf::Clock clock;
-    
+
     sf::Texture playerTexture;
     playerTexture.loadFromFile("assets/player.png");
 
@@ -34,7 +34,7 @@ int main()
     tileSprite.setTexture(tileTexture);
 
     level.LoadLevel("dupa");
-    
+
     // run the program as long as the window is open
     while (window.isOpen())
     {

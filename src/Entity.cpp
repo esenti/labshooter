@@ -61,3 +61,7 @@ void Entity::SetTexture(sf::Texture* texture)
     }
 }
 
+void Entity::SetLevel(Level* l)
+{
+    level = l;
+}

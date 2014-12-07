@@ -19,11 +19,12 @@ class Level
 {
 private:
     std::vector<Entity*> Entities;
-    
+
 public:
     void LoadLevel(std::string path);
     void Render(sf::RenderWindow* window);
     void Update(float dt);
+    void Spawn(Entity* entity);
 };
 
 #endif /* defined(__labshooter__Level__) */
