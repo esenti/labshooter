@@ -47,11 +47,12 @@ void Player::Update(float dt)
     Move(dir);
 
     toBullet -= dt;
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && toBullet <= 0)
+    if(sf::Keyboard::isKeyPressed((index == 0) ? sf::Keyboard::Space : sf::Keyboard::LControl) && toBullet <= 0)
     {
         toBullet = 500;
         Entity* b = new Bullet(sf::Vector2f(1.0, 1.0));
         b->SetTexture(ResourceCache::LoadTexture("assets/tile.png"));
+        b->SetPosition(sprite->getPosition());
         level->Spawn(b);
     }
 }
