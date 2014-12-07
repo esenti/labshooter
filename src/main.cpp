@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
-
+#include "Level.h"
+#include <vector>
 #include <iostream>
 
 void move(float x, float y, sf::Sprite& sprite, sf::Sprite obstacle)
@@ -11,6 +12,7 @@ void move(float x, float y, sf::Sprite& sprite, sf::Sprite obstacle)
         sprite.move(-x, -y);
     }
 }
+Level level;
 
 int main()
 {
@@ -18,7 +20,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(800, 600), "Game window");
 
     sf::Clock clock;
-
+    
     sf::Texture playerTexture;
     playerTexture.loadFromFile("assets/player.png");
 
@@ -44,8 +46,8 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+        level.Update(elapsed.asMilliseconds());
+        /*if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
             move(0.5 * elapsed.asMilliseconds(), 0, playerSprite, tileSprite);
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -56,7 +58,7 @@ int main()
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
             move(0, 0.5 * elapsed.asMilliseconds(), playerSprite, tileSprite);
-        }
+        }*/
 
         tileSprite.setPosition(50, 50);
 
@@ -66,6 +68,7 @@ int main()
         // draw everything here...
         window.draw(playerSprite);
         window.draw(tileSprite);
+        level.Render(&window);
 
         // end the current frame
         window.display();
