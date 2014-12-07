@@ -19,6 +19,7 @@ void Level::ParseLevel(FILE* handle)
     do
     {
         ch = fgetc(handle);
+        SpawnEntity(ch);
     }while(ch != EOF);
     
 }
@@ -53,6 +54,29 @@ void Level::Update(float dt)
     for(auto& it : Entities )
     {
         it->Update(dt);
+    }
+}
+
+void Level::SpawnEntity(char classToSpawn)
+{
+    Entity* e = nullptr;
+    switch (classToSpawn) {
+        case 'B':
+            
+            break;
+        case '1':
+            e = new Player(1);
+            break;
+        case '2':
+            e = new Player(2);
+            
+            
+        default:
+            break;
+    }
+    if(e)
+    {
+        Spawn(e);
     }
 }
 
