@@ -9,18 +9,31 @@
 #include "Level.h"
 #include "Entity.h"
 #include "Entities/Player.h"
+#include "Entities/Block.h"
 #include "ResourceCache.h"
-#include <stdio.h>
-void Level::ParseLevel(FILE* handle)
+
+
+void Level::ParseLevel(std::ifstream& handle)
 {
     //int filesize = fseek(handle, 0, 2);
-    fseek(handle, 0, 0);
-    int ch = -1;
-    do
-    {
-        ch = fgetc(handle);
-        SpawnEntity(ch);
-    }while(ch != EOF);
+    int tileX = 0;
+    int tileY = 0;
+    while (!handle.eof()) {
+        
+        std::string line;
+        std::getline(handle, line);
+        for(int i=0;i<line.length();i++)
+        {
+            char tile = line.at(i);
+            sf::Vector2f pos(tileX * LEVEL_TILE_SIZE, tileY * LEVEL_TILE_SIZE);
+            SpawnEntity(tile, pos);
+            
+            tileX++;
+        }
+        tileY++;
+        tileX = 0;
+        
+    }
     
 }
 
@@ -34,10 +47,11 @@ void Level::LoadLevel(const std::string& path)
     p2->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
     Entities.push_back(p2);*/
     
-    FILE* f = fopen(path.c_str(), "r");
-    if(f)
+    std::ifstream file;
+    file.open(path);
+    if(file.is_open())
     {
-        ParseLevel(f);
+        ParseLevel(file);
     }
 }
 
@@ -57,19 +71,19 @@ void Level::Update(float dt)
     }
 }
 
-void Level::SpawnEntity(char classToSpawn)
+void Level::SpawnEntity(char classToSpawn, sf::Vector2f position)
 {
     Entity* e = nullptr;
     switch (classToSpawn) {
         case 'B':
-            
+            e = new Block();
             break;
         case '1':
-            e = new Player(1);
+            e = new Player(0);
             e->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
             break;
         case '2':
-            e = new Player(2);
+            e = new Player(1 );
             e->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
             
             
@@ -78,6 +92,7 @@ void Level::SpawnEntity(char classToSpawn)
     }
     if(e)
     {
+        e->SetPosition(position);
         Spawn(e);
     }
 }

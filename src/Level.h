@@ -10,18 +10,18 @@
 #define __labshooter__Level__
 
 #include <SFML/Graphics.hpp>
-#include <stdio.h>
+#include <fstream>
 #include <vector>
 #include <string>
 
-#define LEVEL_TILE_SIZE 20
+#define LEVEL_TILE_SIZE 32
 
 class Entity;
 class Level
 {
 private:
     std::vector<Entity*> Entities;
-    void ParseLevel(FILE* handle);
+    void ParseLevel(std::ifstream& handle);
     
 public:
     void LoadLevel(const std::string& path);
@@ -31,7 +31,7 @@ public:
     // B - Block
     // 1 - Player 1
     // 2 - Player 2
-    void SpawnEntity(char classToSpawn);
+    void SpawnEntity(char classToSpawn, sf::Vector2f position);
     
     void Spawn(Entity* entity);
 };
