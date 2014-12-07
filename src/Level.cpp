@@ -8,7 +8,7 @@
 
 #include "Level.h"
 #include "Entity.h"
-#include "Player.h"
+#include "Entities/Player.h"
 #include "ResourceCache.h"
 
 void Level::LoadLevel(std::string path)

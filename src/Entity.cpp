@@ -10,7 +10,7 @@
 
 Entity::Entity()
 {
-
+    
 }
 
 Entity::~Entity()
@@ -52,7 +52,11 @@ void Entity::SetPosition(sf::Vector2f absolutePosition)
 }
 void Entity::SetTexture(sf::Texture* texture)
 {
-    if(sprite && texture)
+    if(!sprite)
+    {
+        sprite = new sf::Sprite();
+    }
+    if( texture)
     {
         sprite->setTexture(*texture);
     }

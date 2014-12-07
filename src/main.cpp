@@ -33,6 +33,8 @@ int main()
     sf::Sprite tileSprite;
     tileSprite.setTexture(tileTexture);
 
+    level.LoadLevel("dupa");
+    
     // run the program as long as the window is open
     while (window.isOpen())
     {
@@ -66,8 +68,8 @@ int main()
         window.clear(sf::Color::White);
 
         // draw everything here...
-        window.draw(playerSprite);
-        window.draw(tileSprite);
+        //window.draw(playerSprite);
+        //window.draw(tileSprite);
         level.Render(&window);
 
         // end the current frame
