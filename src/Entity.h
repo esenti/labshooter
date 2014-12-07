@@ -16,12 +16,9 @@ class Level;
 
 class Entity
 {
-private:
-    bool hasMoved;
-
-    sf::Sprite* sprite;
-
 protected:
+    bool hasMoved;
+    sf::Sprite* sprite;
     Level* level;
 
 public:
