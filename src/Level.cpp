@@ -66,9 +66,11 @@ void Level::SpawnEntity(char classToSpawn)
             break;
         case '1':
             e = new Player(1);
+            e->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
             break;
         case '2':
             e = new Player(2);
+            e->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
             
             
         default:

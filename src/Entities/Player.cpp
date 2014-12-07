@@ -9,7 +9,7 @@
 #include "Player.h"
 
 #include "Level.h"
-#include "Entities/Bullet.h"
+#include "Bullet.h"
 #include "ResourceCache.h"
 
 
