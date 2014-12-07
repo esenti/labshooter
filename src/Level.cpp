@@ -19,7 +19,7 @@ void Level::ParseLevel(std::ifstream& handle)
     int tileX = 0;
     int tileY = 0;
     while (!handle.eof()) {
-        
+
         std::string line;
         std::getline(handle, line);
         for(int i=0;i<line.length();i++)
@@ -27,14 +27,13 @@ void Level::ParseLevel(std::ifstream& handle)
             char tile = line.at(i);
             sf::Vector2f pos(tileX * LEVEL_TILE_SIZE, tileY * LEVEL_TILE_SIZE);
             SpawnEntity(tile, pos);
-            
+
             tileX++;
         }
         tileY++;
         tileX = 0;
-        
+
     }
-    
 }
 
 void Level::LoadLevel(const std::string& path)
@@ -46,7 +45,6 @@ void Level::LoadLevel(const std::string& path)
     Entity* p2 = new Player(1);
     p2->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
     Entities.push_back(p2);*/
-    
     std::ifstream file;
     file.open(path);
     if(file.is_open())
@@ -65,9 +63,9 @@ void Level::Render(sf::RenderWindow* window)
 }
 void Level::Update(float dt)
 {
-    for(auto& it : Entities )
+    for(int i = 0; i < Entities.size(); ++i)
     {
-        it->Update(dt);
+        Entities[i]->Update(dt);
     }
 }
 
@@ -83,10 +81,10 @@ void Level::SpawnEntity(char classToSpawn, sf::Vector2f position)
             e->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
             break;
         case '2':
-            e = new Player(1 );
+            e = new Player(1);
             e->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
-            
-            
+
+
         default:
             break;
     }
