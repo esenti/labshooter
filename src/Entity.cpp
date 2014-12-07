@@ -10,7 +10,6 @@
 
 Entity::Entity() : sprite(nullptr)
 {
-    sprite = nullptr;
 }
 
 Entity::~Entity()
