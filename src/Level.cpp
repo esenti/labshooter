@@ -8,7 +8,7 @@
 
 #include "Level.h"
 #include "Entity.h"
-#include "Player.h"
+#include "Entities/Player.h"
 #include "ResourceCache.h"
 
 void Level::LoadLevel(std::string path)
@@ -24,7 +24,7 @@ void Level::Render(sf::RenderWindow* window)
     {
         it->Draw(window);
     }
-    
+
 }
 void Level::Update(float dt)
 {

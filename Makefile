@@ -1,10 +1,10 @@
 CXX=g++
 RM=rm -f
-CPPFLAGS=-g
+CPPFLAGS=-g --std=c++11 -Isrc
 LDFLAGS=-g
 LDLIBS=-lsfml-graphics -lsfml-window -lsfml-system
 
-SRCS=$(wildcard src/*.cpp)
+SRCS=$(wildcard src/*.cpp src/**/*.cpp)
 OBJS=$(subst .cpp,.o,$(SRCS))
 
 all: game
