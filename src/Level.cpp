@@ -13,9 +13,13 @@
 
 void Level::LoadLevel(std::string path)
 {
-    Entity* p1 = new Player();
+    Entity* p1 = new Player(0);
     p1->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
     Entities.push_back(p1);
+
+    Entity* p2 = new Player(1);
+    p2->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
+    Entities.push_back(p2);
 }
 
 void Level::Render(sf::RenderWindow* window)

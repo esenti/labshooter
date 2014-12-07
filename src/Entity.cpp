@@ -10,7 +10,7 @@
 
 Entity::Entity()
 {
-    
+    sprite = nullptr;
 }
 
 Entity::~Entity()
@@ -22,20 +22,20 @@ void Entity::Draw(sf::RenderWindow* window)
 {
     if(window && sprite &&  sprite->getTexture())
     {
-        
+
         window->draw(*sprite);
     }
 }
 void Entity::Update(float dt)
 {
-    
+
 }
 
 void Entity::Move(sf::Vector2f delta)
 {
     //position += delta;
     sprite->move(delta);
-    
+
     //if(sprite->getGlobalBounds().intersects(obstacle.getGlobalBounds()))
     //{
         //sprite->move(-delta);
@@ -48,7 +48,7 @@ void Entity::SetPosition(sf::Vector2f absolutePosition)
     {
         sprite->setPosition(absolutePosition);
     }
-    
+
 }
 void Entity::SetTexture(sf::Texture* texture)
 {
