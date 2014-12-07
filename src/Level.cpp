@@ -27,7 +27,7 @@ void Level::LoadLevel(const std::string& path)
 {
     /*Entity* p1 = new Player(0);
     p1->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
-    Entities.push_back(p1);
+    Spawn(p1);
 
     Entity* p2 = new Player(1);
     p2->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
@@ -56,3 +56,8 @@ void Level::Update(float dt)
     }
 }
 
+void Level::Spawn(Entity* entity)
+{
+    entity->SetLevel(this);
+    Entities.push_back(entity);
+}

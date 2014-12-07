@@ -10,7 +10,6 @@
 
 Entity::Entity() : sprite(nullptr)
 {
-    sprite = nullptr;
 }
 
 Entity::~Entity()
@@ -62,3 +61,7 @@ void Entity::SetTexture(sf::Texture* texture)
     }
 }
 
+void Entity::SetLevel(Level* l)
+{
+    level = l;
+}

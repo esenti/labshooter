@@ -20,5 +20,6 @@ public:
 
 protected:
 	int index;
+	int toBullet = 500;
 };
 #endif /* defined(__labshooter__Player__) */

@@ -33,6 +33,7 @@ public:
     // 2 - Player 2
     void SpawnEntity(char classToSpawn);
     
+    void Spawn(Entity* entity);
 };
 
 #endif /* defined(__labshooter__Level__) */
