@@ -24,7 +24,7 @@ void Level::Render(sf::RenderWindow* window)
     {
         it->Draw(window);
     }
-    
+
 }
 void Level::Update(float dt)
 {
