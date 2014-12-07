@@ -33,7 +33,7 @@ int main()
     sf::Sprite tileSprite;
     tileSprite.setTexture(tileTexture);
 
-    level.LoadLevel("dupa");
+    level.LoadLevel("assets/level1");
     
     // run the program as long as the window is open
     while (window.isOpen())

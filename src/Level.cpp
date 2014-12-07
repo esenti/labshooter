@@ -10,16 +10,34 @@
 #include "Entity.h"
 #include "Entities/Player.h"
 #include "ResourceCache.h"
-
-void Level::LoadLevel(std::string path)
+#include <stdio.h>
+void Level::ParseLevel(FILE* handle)
 {
-    Entity* p1 = new Player(0);
+    //int filesize = fseek(handle, 0, 2);
+    fseek(handle, 0, 0);
+    int ch = -1;
+    do
+    {
+        ch = fgetc(handle);
+    }while(ch != EOF);
+    
+}
+
+void Level::LoadLevel(const std::string& path)
+{
+    /*Entity* p1 = new Player(0);
     p1->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
     Entities.push_back(p1);
 
     Entity* p2 = new Player(1);
     p2->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
-    Entities.push_back(p2);
+    Entities.push_back(p2);*/
+    
+    FILE* f = fopen(path.c_str(), "r");
+    if(f)
+    {
+        ParseLevel(f);
+    }
 }
 
 void Level::Render(sf::RenderWindow* window)
@@ -37,3 +55,4 @@ void Level::Update(float dt)
         it->Update(dt);
     }
 }
+

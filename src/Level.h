@@ -14,16 +14,25 @@
 #include <vector>
 #include <string>
 
+#define LEVEL_TILE_SIZE 20
+
 class Entity;
 class Level
 {
 private:
     std::vector<Entity*> Entities;
+    void ParseLevel(FILE* handle);
     
 public:
-    void LoadLevel(std::string path);
+    void LoadLevel(const std::string& path);
     void Render(sf::RenderWindow* window);
     void Update(float dt);
+    
+    // B - Block
+    // 1 - Player 1
+    // 2 - Player 2
+    void SpawnEntity(char classToSpawn);
+    
 };
 
 #endif /* defined(__labshooter__Level__) */
