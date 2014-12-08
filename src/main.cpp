@@ -16,11 +16,14 @@ Level level;
 
 int main()
 {
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+
     // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Game window");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Game window", sf::Style::Default, settings);
 
     sf::Clock clock;
-    
+
     sf::Texture playerTexture;
     playerTexture.loadFromFile("assets/player.png");
 
@@ -34,7 +37,7 @@ int main()
     tileSprite.setTexture(tileTexture);
 
     level.LoadLevel("assets/level1");
-    
+
     // run the program as long as the window is open
     while (window.isOpen())
     {
