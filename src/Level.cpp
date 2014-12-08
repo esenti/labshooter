@@ -36,6 +36,16 @@ Level::Level()
     space.setOrigin(textRect.left + textRect.width/2.0f,
                    textRect.top  + textRect.height/2.0f);
     space.setPosition(sf::Vector2f(800/2.0f, 600/2.0f));
+
+    win.setFont(font);
+    win.setString("WINNING!");
+    win.setCharacterSize(80);
+    win.setColor(sf::Color::Black);
+    win.setStyle(sf::Text::Regular);
+    textRect = win.getLocalBounds();
+    win.setOrigin(textRect.left + textRect.width/2.0f,
+                   textRect.top  + textRect.height/2.0f);
+    win.setPosition(sf::Vector2f(800/2.0f, 600/2.0f));
 }
 
 void Level::ParseLevel(std::ifstream& handle)
@@ -94,6 +104,10 @@ void Level::Render(sf::RenderWindow* window)
     {
         window->draw(space);
     }
+    else if(state == WIN)
+    {
+        window->draw(win);
+    }
 }
 void Level::Update(float dt)
 {
@@ -106,11 +120,17 @@ void Level::Update(float dt)
         }
         break;
     case OVER:
+    case WIN:
         break;
     case PLAYING:
+        int enemies = 0;
         for(unsigned int i = 0; i < Entities.size(); ++i)
         {
             Entities[i]->Update(dt);
+            if(Entities[i]->GetTag() == "enemy")
+            {
+                ++enemies;
+            }
         }
 
         if(PendingDeletion.size() > 0)
@@ -122,6 +142,11 @@ void Level::Update(float dt)
                 delete e;
             }
         PendingDeletion.clear();
+
+        if(!enemies)
+        {
+            SetState(WIN);
+        }
         }
         break;
     }

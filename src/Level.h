@@ -24,6 +24,7 @@ public:
         MENU,
         PLAYING,
         OVER,
+        WIN,
     };
 
 private:
@@ -33,6 +34,7 @@ private:
     State state;
     sf::Text over;
     sf::Text space;
+    sf::Text win;
     sf::Font font;
 
 public:

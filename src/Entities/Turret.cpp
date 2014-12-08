@@ -43,18 +43,23 @@ void Turret::Update(float dt)
 		float dist1 = distance(sprite->getPosition(), level->player1->sprite->getPosition());
 		float dist2 = distance(sprite->getPosition(), level->player2->sprite->getPosition());
 
-		Entity* target = dist1 < dist2 ? level->player1 : level->player2;
+		float minDistance = dist1 < dist2 ? dist1 : dist2;
 
-		sf::Vector2f toTarget = normalize(target->sprite->getPosition() - sprite->getPosition());
+		if(minDistance < 200)
+		{
+			Entity* target = dist1 < dist2 ? level->player1 : level->player2;
 
-		sf::Transform transform;
-		transform.rotate(180);
-		toBullet = 300;
-		// Entity* b = new Bullet(transform.transformPoint(sf::Vector2f(0.0, -1.0)));
-		Entity* b = new Bullet(toTarget, index, "player");
-		b->SetTexture(ResourceCache::LoadTexture("assets/particle.png"));
-		b->SetPosition(sprite->getPosition());
-		level->Spawn(b);
+			sf::Vector2f toTarget = normalize(target->sprite->getPosition() - sprite->getPosition());
+
+			sf::Transform transform;
+			transform.rotate(180);
+			toBullet = 300;
+			// Entity* b = new Bullet(transform.transformPoint(sf::Vector2f(0.0, -1.0)));
+			Entity* b = new Bullet(toTarget, index, "player");
+			b->SetTexture(ResourceCache::LoadTexture("assets/particle.png"));
+			b->SetPosition(sprite->getPosition());
+			level->Spawn(b);
+		}
 	}
 }
 
