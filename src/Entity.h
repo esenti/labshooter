@@ -20,6 +20,9 @@ protected:
     bool hasMoved;
     sf::Sprite* sprite;
     Level* level;
+    bool markedForDeletion;
+    
+    
 
 public:
     Entity();
@@ -33,5 +36,6 @@ public:
     void SetLevel(Level* l);
     sf::Transform GetTransform();
     float GetRotation();
+    void Destroy();
 };
 #endif /* defined(__labshooter__Entity__) */

@@ -7,6 +7,7 @@
 //
 
 #include "Entity.h"
+#include "Level.h"
 
 Entity::Entity() : sprite(nullptr)
 {
@@ -80,5 +81,10 @@ sf::Transform Entity::GetTransform()
 float Entity::GetRotation()
 {
     return sprite->getRotation();
+}
+void Entity::Destroy()
+{
+    markedForDeletion = true;
+    level->MarkForDeletion(this);
 }
 

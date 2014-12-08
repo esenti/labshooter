@@ -21,6 +21,7 @@ class Level
 {
 private:
     std::vector<Entity*> Entities;
+    std::vector<Entity*> PendingDeletion;
     void ParseLevel(std::ifstream& handle);
     
 public:
@@ -34,6 +35,7 @@ public:
     void SpawnEntity(char classToSpawn, sf::Vector2f position);
     
     void Spawn(Entity* entity);
+    void MarkForDeletion(Entity* ent);
 };
 
 #endif /* defined(__labshooter__Level__) */

@@ -67,6 +67,17 @@ void Level::Update(float dt)
     {
         Entities[i]->Update(dt);
     }
+    
+    if(PendingDeletion.size() > 0)
+    {
+        Entities.erase(PendingDeletion.begin(), PendingDeletion.end());
+        for(auto& e : PendingDeletion)
+        {
+            delete e;
+        }
+    PendingDeletion.clear();
+    }
+    
 }
 
 void Level::SpawnEntity(char classToSpawn, sf::Vector2f position)
@@ -99,4 +110,8 @@ void Level::Spawn(Entity* entity)
 {
     entity->SetLevel(this);
     Entities.push_back(entity);
+}
+void Level::MarkForDeletion(Entity* ent)
+{
+    PendingDeletion.push_back(ent);
 }
