@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Level.h"
+#include "SoundManager.h"
 #include <vector>
 #include <iostream>
 
@@ -35,6 +36,9 @@ int main()
 
     sf::Sprite tileSprite;
     tileSprite.setTexture(tileTexture);
+
+    SoundManager::LoadSound("shoot", "assets/shoot.wav");
+    SoundManager::LoadSound("hurt", "assets/hurt.wav");
 
     level.LoadLevel("assets/level1");
 

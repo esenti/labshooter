@@ -2,7 +2,7 @@ CXX=g++
 RM=rm -f
 CPPFLAGS=-g --std=c++11 -Isrc -Wall
 LDFLAGS=-g
-LDLIBS=-lsfml-graphics -lsfml-window -lsfml-system
+LDLIBS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 SRCS=$(wildcard src/*.cpp src/**/*.cpp)
 OBJS=$(subst .cpp,.o,$(SRCS))

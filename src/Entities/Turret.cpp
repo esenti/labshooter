@@ -2,6 +2,7 @@
 #include "ResourceCache.h"
 #include "Level.h"
 #include "Bullet.h"
+#include "SoundManager.h"
 
 Turret::Turret(int index): toBullet(300), index(index), hp(10)
 {
@@ -59,6 +60,7 @@ void Turret::Update(float dt)
 			b->SetTexture(ResourceCache::LoadTexture("assets/particle.png"));
 			b->SetPosition(sprite->getPosition());
 			level->Spawn(b);
+	        SoundManager::Play("shoot");
 		}
 	}
 }
@@ -68,6 +70,7 @@ void Turret::Hit(float dmg, int i)
 	if(i == index)
 	{
 		hp -= dmg;
+		SoundManager::Play("hurt");
 		if(hp <= 0)
 		{
 			level->MarkForDeletion(this);

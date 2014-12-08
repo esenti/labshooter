@@ -11,6 +11,7 @@
 #include "Level.h"
 #include "Bullet.h"
 #include "ResourceCache.h"
+#include "SoundManager.h"
 
 
 Player::Player(int i) : Entity(), rotationRate(0.4f), maxSpeed(.5), hp(100), index(i), toBullet(300)
@@ -94,6 +95,7 @@ void Player::Update(float dt)
         //b->SetTexture(ResourceCache::LoadTexture("assets/tile.png"));
         b->SetPosition(sprite->getPosition());
         level->Spawn(b);
+        SoundManager::Play("shoot");
     }
 }
 
@@ -116,6 +118,7 @@ std::string Player::GetTag()
 void Player::Hit(float dmg, int index)
 {
     hp -= dmg;
+    SoundManager::Play("hurt");
     std::cout << index << ": " << hp << std::endl;
     if(hp <= 0)
     {
