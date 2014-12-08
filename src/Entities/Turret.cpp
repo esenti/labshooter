@@ -3,6 +3,7 @@
 #include "Level.h"
 #include "Bullet.h"
 #include "SoundManager.h"
+#include "Explosion.h"
 
 Turret::Turret(int index): toBullet(700), index(index), hp(10)
 {
@@ -73,7 +74,13 @@ void Turret::Hit(float dmg, int i)
 		SoundManager::Play("hurt");
 		if(hp <= 0)
 		{
-			level->MarkForDeletion(this);
+            Explosion* exp = new Explosion();
+            sf::Vector2f orig = sprite->getPosition();
+            exp->Fire(orig);
+            
+            level->Spawn(exp);
+            Destroy();
+            
 		}
 	}
 }

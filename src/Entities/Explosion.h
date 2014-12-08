@@ -35,12 +35,14 @@ class Explosion : public Entity
 private:
     std::vector<ExplosionParticle*> particles;
     int spawnedParticles;
+    sf::Vector2f Origin;
 public:
     Explosion();
     virtual ~Explosion();
     virtual void Draw(sf::RenderWindow* window) override;
     virtual void Update(float dt) override;
     virtual std::string GetTag() override;
+    void Fire(sf::Vector2f& pos);
     void OnParticleDie(ExplosionParticle* particle);
 
     

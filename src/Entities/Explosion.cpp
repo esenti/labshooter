@@ -12,27 +12,6 @@
 
 Explosion::Explosion()
 {
-    int particleNum = rand() & 60 + 35;
-    spawnedParticles = particleNum;
-    const sf::Texture* particleTexture = ResourceCache::LoadTexture("assets/particle.png");
-    for(int i=0;i<particleNum;i++)
-    {
-        float rand01Scale = FLOAT_RAND;
-        float scale = rand01Scale * 7.0f + 1;
-        ExplosionParticle* particle = new ExplosionParticle;
-        particle->sprite.setScale(scale, scale);
-        particle->sprite.setTexture(*particleTexture);
-        particle->sprite.setPosition(200, 200);
-        
-        sf::Transform tr;
-        tr.rotate(FLOAT_RAND * 359.0f);
-        float randomSpeed = FLOAT_RAND * 1;
-        particle->velocity = sf::Vector2f(tr.transformPoint(1, 0))*randomSpeed;
-        particle -> timeToLive = FLOAT_RAND * 2;
-        particles.push_back(particle);
-        
-        
-    }
 }
 
 Explosion::~Explosion()
@@ -56,7 +35,7 @@ void Explosion::Update(float dt)
     {
         p->sprite.move(p->velocity * dt);
         
-        p->elapsedTime += dt;
+        p->elapsedTime += dt/1000.0f;
         if(p->elapsedTime > p->timeToLive)
         {
             spawnedParticles--;
@@ -80,4 +59,31 @@ void Explosion::OnParticleDie(ExplosionParticle* particle)
     delete particle;
 }
 
+void Explosion::Fire(sf::Vector2f& origin)
+{
+    Origin = origin;
+    
+    int particleNum = rand() & 60 + 35;
+    spawnedParticles = particleNum;
+    const sf::Texture* particleTexture = ResourceCache::LoadTexture("assets/particle.png");
+    for(int i=0;i<particleNum;i++)
+    {
+        float rand01Scale = FLOAT_RAND;
+        float scale = rand01Scale * 7.0f + 1;
+        ExplosionParticle* particle = new ExplosionParticle;
+        particle->sprite.setScale(scale, scale);
+        particle->sprite.setTexture(*particleTexture);
+        particle->sprite.setPosition(Origin.x, Origin.y);
+        
+        sf::Transform tr;
+        tr.rotate(FLOAT_RAND * 359.0f);
+        float randomSpeed = FLOAT_RAND * 0.4;
+        particle->elapsedTime = 0;
+        particle->velocity = sf::Vector2f(tr.transformPoint(1, 0))*randomSpeed;
+        particle -> timeToLive = FLOAT_RAND * 2 + 2;
+        particles.push_back(particle);
+        
+        
+    }
 
+}

@@ -83,8 +83,8 @@ void Level::LoadLevel(const std::string& path)
     p2->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
     Entities.push_back(p2);*/
     
-    Entity* explosion = new Explosion();
-    Entities.push_back(explosion);
+    //Entity* explosion = new Explosion();
+    //Entities.push_back(explosion);
     
     std::ifstream file;
     file.open(path);

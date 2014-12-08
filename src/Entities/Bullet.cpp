@@ -15,7 +15,7 @@ void Bullet::Update(float dt)
 	if(collisions.size())
 	{
 		collisions[0].first->Hit(5, index);
-		level->MarkForDeletion(this);
+        Destroy();
 	}
 }
 
