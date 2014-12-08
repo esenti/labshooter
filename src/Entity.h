@@ -27,8 +27,11 @@ public:
     virtual void Draw(sf::RenderWindow* window);
     virtual void Update(float dt);
     void Move(sf::Vector2f delta); //Move character to given position
+    void Rotate(float angle);
     void SetPosition(sf::Vector2f absolutePosition);
     void SetTexture(sf::Texture* texture);
     void SetLevel(Level* l);
+    sf::Transform GetTransform();
+    float GetRotation();
 };
 #endif /* defined(__labshooter__Entity__) */

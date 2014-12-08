@@ -34,11 +34,16 @@ void Entity::Move(sf::Vector2f delta)
 {
     //position += delta;
     sprite->move(delta);
+    
 
     //if(sprite->getGlobalBounds().intersects(obstacle.getGlobalBounds()))
     //{
         //sprite->move(-delta);
     //}
+}
+void Entity::Rotate(float angle)
+{
+    sprite->rotate(angle);
 }
 
 void Entity::SetPosition(sf::Vector2f absolutePosition)
@@ -58,6 +63,9 @@ void Entity::SetTexture(sf::Texture* texture)
     if( texture)
     {
         sprite->setTexture(*texture);
+        sf::Vector2u s = texture->getSize();
+        sf::Vector2f origin = sf::Vector2f((float)s.x, (float)s.y)/2.0f;
+        sprite->setOrigin(origin);
     }
 }
 
@@ -65,3 +73,12 @@ void Entity::SetLevel(Level* l)
 {
     level = l;
 }
+sf::Transform Entity::GetTransform()
+{
+    return sprite->getTransform();
+}
+float Entity::GetRotation()
+{
+    return sprite->getRotation();
+}
+
