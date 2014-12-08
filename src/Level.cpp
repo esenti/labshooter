@@ -26,7 +26,7 @@ Level::Level()
     sf::FloatRect textRect = over.getLocalBounds();
     over.setOrigin(textRect.left + textRect.width/2.0f,
                    textRect.top  + textRect.height/2.0f);
-    over.setPosition(sf::Vector2f(800/2.0f, 600/2.0f));
+    over.setPosition(sf::Vector2f(928/2.0f, 448/2.0f));
 
     space.setFont(font);
     space.setString("SPACE TO START");
@@ -36,7 +36,7 @@ Level::Level()
     textRect = space.getLocalBounds();
     space.setOrigin(textRect.left + textRect.width/2.0f,
                    textRect.top  + textRect.height/2.0f);
-    space.setPosition(sf::Vector2f(800/2.0f, 600/2.0f));
+    space.setPosition(sf::Vector2f(928/2.0f, 448/2.0f));
 
     win.setFont(font);
     win.setString("WINNING!");
@@ -46,7 +46,7 @@ Level::Level()
     textRect = win.getLocalBounds();
     win.setOrigin(textRect.left + textRect.width/2.0f,
                    textRect.top  + textRect.height/2.0f);
-    win.setPosition(sf::Vector2f(800/2.0f, 600/2.0f));
+    win.setPosition(sf::Vector2f(928/2.0f, 448/2.0f));
 }
 
 void Level::ParseLevel(std::ifstream& handle)

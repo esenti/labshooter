@@ -24,7 +24,7 @@ int main()
     settings.antialiasingLevel = 8;
 
     // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Game window", sf::Style::Default, settings);
+    sf::RenderWindow window(sf::VideoMode(928, 448), "Game window", sf::Style::Default, settings);
 
     sf::Clock clock;
 

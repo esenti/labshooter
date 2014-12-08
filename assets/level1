@@ -1,10 +1,14 @@
-BBBBBBBBBBBBBBBB
-B       T B    B
-B         B   tB
-B    B    B    B
-B 12 B         B
-B    B         B
-BB  BBBBBB   BBB
-B      T       B
-B           t  B
-BBBBBBBBBBBBBBBB
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+B         Bt           B    B
+B         B            B    B
+B    B    B     B      B    B
+B 12 BT         B     tBt   B
+B    B          BT          B
+BB  BBBBBBBBBBBBBB          B
+B       tB    T  BBBBBBBB   B
+B        B       B          B
+B                B          B
+B          B  t  B   BBBBT  B
+BBBBBBB    B                B
+BT         B                B
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBB
