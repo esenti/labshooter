@@ -86,7 +86,7 @@ void Player::Update(float dt)
     }
 
     toBullet -= dt;
-    if(sf::Keyboard::isKeyPressed((index == 0) ? sf::Keyboard::Space : sf::Keyboard::LControl) && toBullet <= 0)
+    if(sf::Keyboard::isKeyPressed((index == 0) ? sf::Keyboard::Space : sf::Keyboard::RShift) && toBullet <= 0)
     {
         sf::Transform transform;
         transform.rotate(GetRotation());
