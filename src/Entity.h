@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 
+#include <string>
+
 class Level;
 
 class Entity
@@ -28,6 +30,7 @@ public:
     virtual void Update(float dt);
     virtual bool CollidesWith(Entity* e, sf::FloatRect& collision);
     virtual void SetTexture(sf::Texture* texture);
+    virtual std::string GetTag();
     void Move(sf::Vector2f delta); //Move character to given position
     void Rotate(float angle);
     void SetPosition(sf::Vector2f absolutePosition);

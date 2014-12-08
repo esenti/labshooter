@@ -97,11 +97,16 @@ void Player::Update(float dt)
 
 bool Player::CollidesWith(Entity* e, sf::FloatRect& collision)
 {
-    return e != this && collider->getGlobalBounds().intersects(e->sprite->getGlobalBounds(), collision);
+    return e->GetTag() == "environment" && collider->getGlobalBounds().intersects(e->sprite->getGlobalBounds(), collision);
 }
 
 void Player::SetTexture(sf::Texture* texture)
 {
     Entity::SetTexture(texture);
     collider = new sf::Sprite(*sprite);
+}
+
+std::string Player::GetTag()
+{
+    return "player";
 }
