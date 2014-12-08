@@ -38,6 +38,7 @@ int main()
     tileSprite.setTexture(tileTexture);
 
     SoundManager::LoadSound("shoot", "assets/shoot.wav");
+    SoundManager::LoadSound("shoot2", "assets/shoot2.wav");
     SoundManager::LoadSound("hurt", "assets/hurt.wav");
 
     level.LoadLevel("assets/level1");

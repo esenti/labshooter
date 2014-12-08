@@ -4,7 +4,7 @@
 #include "Bullet.h"
 #include "SoundManager.h"
 
-Turret::Turret(int index): toBullet(300), index(index), hp(10)
+Turret::Turret(int index): toBullet(700), index(index), hp(10)
 {
 	if(index == 0)
 	{
@@ -54,13 +54,13 @@ void Turret::Update(float dt)
 
 			sf::Transform transform;
 			transform.rotate(180);
-			toBullet = 300;
+			toBullet = 700;
 			// Entity* b = new Bullet(transform.transformPoint(sf::Vector2f(0.0, -1.0)));
 			Entity* b = new Bullet(toTarget, index, "player");
 			b->SetTexture(ResourceCache::LoadTexture("assets/particle.png"));
 			b->SetPosition(sprite->getPosition());
 			level->Spawn(b);
-	        SoundManager::Play("shoot");
+	        SoundManager::Play("shoot2");
 		}
 	}
 }
