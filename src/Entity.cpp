@@ -65,3 +65,8 @@ void Entity::SetLevel(Level* l)
 {
     level = l;
 }
+
+bool Entity::CollidesWith(Entity* e, sf::FloatRect& collision)
+{
+    return e != this && sprite->getGlobalBounds().intersects(e->sprite->getGlobalBounds(), collision);
+}

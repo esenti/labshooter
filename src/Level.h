@@ -22,18 +22,19 @@ class Level
 private:
     std::vector<Entity*> Entities;
     void ParseLevel(std::ifstream& handle);
-    
+
 public:
     void LoadLevel(const std::string& path);
     void Render(sf::RenderWindow* window);
     void Update(float dt);
-    
+
     // B - Block
     // 1 - Player 1
     // 2 - Player 2
     void SpawnEntity(char classToSpawn, sf::Vector2f position);
-    
+
     void Spawn(Entity* entity);
+    std::vector<std::pair<Entity*, sf::FloatRect>> getCollisions(Entity* entity);
 };
 
 #endif /* defined(__labshooter__Level__) */

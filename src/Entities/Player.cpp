@@ -44,7 +44,19 @@ void Player::Update(float dt)
     dir.x *= 0.5 * dt;
     dir.y *= 0.5 * dt;
 
-    Move(dir);
+    Move(sf::Vector2f(dir.x, 0));
+    auto c = level->getCollisions(this);
+    if(c.size())
+    {
+        Move(sf::Vector2f((dir.x > 0 ? -1.0 : 1.0) * c[0].second.width, 0));
+    }
+
+    Move(sf::Vector2f(0, dir.y));
+    c = level->getCollisions(this);
+    if(c.size())
+    {
+        Move(sf::Vector2f(0, (dir.y > 0 ? -1.0 : 1.0) * c[0].second.height));
+    }
 
     toBullet -= dt;
     if(sf::Keyboard::isKeyPressed((index == 0) ? sf::Keyboard::Space : sf::Keyboard::LControl) && toBullet <= 0)

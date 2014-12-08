@@ -26,6 +26,7 @@ public:
     virtual ~Entity();
     virtual void Draw(sf::RenderWindow* window);
     virtual void Update(float dt);
+    virtual bool CollidesWith(Entity* e, sf::FloatRect& collision);
     void Move(sf::Vector2f delta); //Move character to given position
     void SetPosition(sf::Vector2f absolutePosition);
     void SetTexture(sf::Texture* texture);
