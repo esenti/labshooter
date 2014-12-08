@@ -12,3 +12,8 @@ Block::Block()
 {
     SetTexture(ResourceCache::LoadTexture("assets/tile.png"));
 }
+
+std::string Block::GetTag()
+{
+	return "environment";
+}

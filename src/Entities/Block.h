@@ -15,5 +15,6 @@ class Block : public Entity
 {
 public:
     Block();
+    virtual std::string GetTag();
 };
 #endif /* defined(__labshooter__Block__) */

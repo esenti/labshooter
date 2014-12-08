@@ -17,11 +17,14 @@ public:
     Player(int i);
     virtual ~Player();
     virtual void Update(float dt) override;
+    virtual bool CollidesWith(Entity* e, sf::FloatRect& collision);
+    virtual void SetTexture(sf::Texture* texture);
+    virtual std::string GetTag();
     float rotationRate;
     float maxSpeed;
 protected:
 	int index;
 	int toBullet;
-
+	sf::Sprite* collider;
 };
 #endif /* defined(__labshooter__Player__) */

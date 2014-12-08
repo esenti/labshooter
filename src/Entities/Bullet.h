@@ -8,6 +8,7 @@ class Bullet : public Entity
 public:
     Bullet(sf::Vector2f dir);
     virtual void Update(float dt) override;
+    virtual std::string GetTag();
 
 protected:
 	sf::Vector2f dir;

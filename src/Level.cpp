@@ -115,3 +115,20 @@ void Level::MarkForDeletion(Entity* ent)
 {
     PendingDeletion.push_back(ent);
 }
+
+std::vector<std::pair<Entity*, sf::FloatRect>> Level::getCollisions(Entity* entity)
+{
+    std::vector<std::pair<Entity*, sf::FloatRect>> result;
+
+    sf::FloatRect collision;
+
+    for(auto e : Entities)
+    {
+        if(entity->CollidesWith(e, collision))
+        {
+            result.push_back(std::make_pair(e, collision));
+        }
+    }
+
+    return result;
+}

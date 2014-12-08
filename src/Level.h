@@ -23,19 +23,19 @@ private:
     std::vector<Entity*> Entities;
     std::vector<Entity*> PendingDeletion;
     void ParseLevel(std::ifstream& handle);
-    
+
 public:
     void LoadLevel(const std::string& path);
     void Render(sf::RenderWindow* window);
     void Update(float dt);
-    
+    void MarkForDeletion(Entity* ent);
     // B - Block
     // 1 - Player 1
     // 2 - Player 2
     void SpawnEntity(char classToSpawn, sf::Vector2f position);
-    
+
     void Spawn(Entity* entity);
-    void MarkForDeletion(Entity* ent);
+    std::vector<std::pair<Entity*, sf::FloatRect>> getCollisions(Entity* entity);
 };
 
 #endif /* defined(__labshooter__Level__) */

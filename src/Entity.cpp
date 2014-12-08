@@ -35,7 +35,7 @@ void Entity::Move(sf::Vector2f delta)
 {
     //position += delta;
     sprite->move(delta);
-    
+
 
     //if(sprite->getGlobalBounds().intersects(obstacle.getGlobalBounds()))
     //{
@@ -74,6 +74,12 @@ void Entity::SetLevel(Level* l)
 {
     level = l;
 }
+
+bool Entity::CollidesWith(Entity* e, sf::FloatRect& collision)
+{
+    return e != this && sprite->getGlobalBounds().intersects(e->sprite->getGlobalBounds(), collision);
+}
+
 sf::Transform Entity::GetTransform()
 {
     return sprite->getTransform();
@@ -82,9 +88,3 @@ float Entity::GetRotation()
 {
     return sprite->getRotation();
 }
-void Entity::Destroy()
-{
-    markedForDeletion = true;
-    level->MarkForDeletion(this);
-}
-
