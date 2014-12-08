@@ -17,9 +17,11 @@ public:
     Player(int i);
     virtual ~Player();
     virtual void Update(float dt) override;
-
+    float rotationRate;
+    float maxSpeed;
 protected:
 	int index;
 	int toBullet;
+
 };
 #endif /* defined(__labshooter__Player__) */
