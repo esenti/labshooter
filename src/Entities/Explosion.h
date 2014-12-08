@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include <SFML/Main.hpp>
 #include "Entity.h"
 #include <string>
 
@@ -23,7 +22,7 @@ struct ExplosionParticle;
 
 struct ExplosionParticle
 {
-    
+
     sf::Sprite sprite;
     sf::Vector2f velocity;
     float elapsedTime;
@@ -45,7 +44,7 @@ public:
     void Fire(sf::Vector2f& pos);
     void OnParticleDie(ExplosionParticle* particle);
 
-    
-    
+
+
 };
 #endif /* defined(__labshooter__Explosion__) */

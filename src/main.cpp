@@ -3,7 +3,7 @@
 #include "SoundManager.h"
 #include <vector>
 #include <iostream>
-#include <time.h>include
+#include <time.h>
 #include <random>
 
 void move(float x, float y, sf::Sprite& sprite, sf::Sprite obstacle)
