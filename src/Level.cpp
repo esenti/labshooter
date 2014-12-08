@@ -10,6 +10,7 @@
 #include "Entity.h"
 #include "Entities/Player.h"
 #include "Entities/Block.h"
+#include "Entities/Turret.h"
 #include "ResourceCache.h"
 
 
@@ -25,7 +26,8 @@ void Level::ParseLevel(std::ifstream& handle)
         for(unsigned int i=0;i<line.length();i++)
         {
             char tile = line.at(i);
-            sf::Vector2f pos(tileX * LEVEL_TILE_SIZE, tileY * LEVEL_TILE_SIZE);
+            sf::Vector2f pos(tileX * LEVEL_TILE_SIZE + 0.5 * LEVEL_TILE_SIZE,
+                tileY * LEVEL_TILE_SIZE + 0.5 * LEVEL_TILE_SIZE);
             SpawnEntity(tile, pos);
 
             tileX++;
@@ -70,9 +72,10 @@ void Level::Update(float dt)
 
     if(PendingDeletion.size() > 0)
     {
-        Entities.erase(PendingDeletion.begin(), PendingDeletion.end());
         for(auto& e : PendingDeletion)
         {
+            Entities.erase(std::remove(Entities.begin(), Entities.end(), e), Entities.end());
+
             delete e;
         }
     PendingDeletion.clear();
@@ -90,11 +93,16 @@ void Level::SpawnEntity(char classToSpawn, sf::Vector2f position)
         case '1':
             e = new Player(0);
             e->SetTexture(ResourceCache::LoadTexture("assets/player1.png"));
+            player1 = e;
             break;
         case '2':
             e = new Player(1);
             e->SetTexture(ResourceCache::LoadTexture("assets/player2.png"));
-
+            player2 = e;
+            break;
+        case 'T':
+            e = new Turret();
+            break;
 
         default:
             break;

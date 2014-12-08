@@ -13,7 +13,7 @@
 #include "ResourceCache.h"
 
 
-Player::Player(int i) : Entity(), rotationRate(0.5f), maxSpeed(.5), index(i), toBullet(500)
+Player::Player(int i) : Entity(), rotationRate(0.5f), maxSpeed(.5), index(i), toBullet(300)
 {
 }
 
@@ -89,7 +89,7 @@ void Player::Update(float dt)
     {
         sf::Transform transform;
         transform.rotate(GetRotation());
-        toBullet = 500;
+        toBullet = 300;
         Entity* b = new Bullet(transform.transformPoint(sf::Vector2f(0.0, -1.0)));
         //b->SetTexture(ResourceCache::LoadTexture("assets/tile.png"));
         b->SetPosition(sprite->getPosition());

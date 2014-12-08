@@ -9,6 +9,7 @@ public:
     Bullet(sf::Vector2f dir);
     virtual void Update(float dt) override;
     virtual std::string GetTag();
+    virtual bool CollidesWith(Entity* e, sf::FloatRect& collision);
 
 protected:
 	sf::Vector2f dir;
