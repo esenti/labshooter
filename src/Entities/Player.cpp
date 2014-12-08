@@ -13,7 +13,7 @@
 #include "ResourceCache.h"
 
 
-Player::Player(int i) : Entity(), index(i), toBullet(500), rotationRate(0.5f), maxSpeed(.5)
+Player::Player(int i) : Entity(), rotationRate(0.5f), maxSpeed(.5), index(i), toBullet(500)
 {
 }
 

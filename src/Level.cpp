@@ -22,7 +22,7 @@ void Level::ParseLevel(std::ifstream& handle)
 
         std::string line;
         std::getline(handle, line);
-        for(int i=0;i<line.length();i++)
+        for(unsigned int i=0;i<line.length();i++)
         {
             char tile = line.at(i);
             sf::Vector2f pos(tileX * LEVEL_TILE_SIZE, tileY * LEVEL_TILE_SIZE);
@@ -63,11 +63,11 @@ void Level::Render(sf::RenderWindow* window)
 }
 void Level::Update(float dt)
 {
-    for(int i = 0; i < Entities.size(); ++i)
+    for(unsigned int i = 0; i < Entities.size(); ++i)
     {
         Entities[i]->Update(dt);
     }
-    
+
     if(PendingDeletion.size() > 0)
     {
         Entities.erase(PendingDeletion.begin(), PendingDeletion.end());
@@ -77,7 +77,7 @@ void Level::Update(float dt)
         }
     PendingDeletion.clear();
     }
-    
+
 }
 
 void Level::SpawnEntity(char classToSpawn, sf::Vector2f position)
