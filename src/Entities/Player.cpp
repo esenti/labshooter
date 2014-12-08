@@ -91,7 +91,7 @@ void Player::Update(float dt)
         transform.rotate(GetRotation());
         toBullet = 500;
         Entity* b = new Bullet(transform.transformPoint(sf::Vector2f(0.0, -1.0)));
-        b->SetTexture(ResourceCache::LoadTexture("assets/tile.png"));
+        b->SetTexture(ResourceCache::LoadTexture("assets/particle.png"));
         b->SetPosition(sprite->getPosition());
         level->Spawn(b);
     }
