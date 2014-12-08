@@ -1,6 +1,6 @@
 CXX=g++
 RM=rm -f
-CPPFLAGS=-g --std=c++11 -Isrc
+CPPFLAGS=-g --std=c++11 -Isrc -Wall
 LDFLAGS=-g
 LDLIBS=-lsfml-graphics -lsfml-window -lsfml-system
 
