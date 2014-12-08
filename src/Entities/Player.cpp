@@ -64,19 +64,24 @@ void Player::Update(float dt)
         Rotate(rotAngle);
 
         Move(sf::Vector2f(dir.x, 0));
+        collider->setPosition(sprite->getPosition());
         auto c = level->getCollisions(this);
         if(c.size())
         {
             Move(sf::Vector2f((dir.x > 0 ? -1.0 : 1.0) * c[0].second.width, 0));
+            collider->setPosition(sprite->getPosition());
         }
 
         Move(sf::Vector2f(0, dir.y));
+        collider->setPosition(sprite->getPosition());
         c = level->getCollisions(this);
         if(c.size())
         {
             Move(sf::Vector2f(0, (dir.y > 0 ? -1.0 : 1.0) * c[0].second.height));
+            collider->setPosition(sprite->getPosition());
         }
         //printf("Input dir: %f %f\r\n", dir.x, dir.y);
+
     }
 
     toBullet -= dt;
@@ -88,4 +93,15 @@ void Player::Update(float dt)
         b->SetPosition(sprite->getPosition());
         level->Spawn(b);
     }
+}
+
+bool Player::CollidesWith(Entity* e, sf::FloatRect& collision)
+{
+    return e != this && collider->getGlobalBounds().intersects(e->sprite->getGlobalBounds(), collision);
+}
+
+void Player::SetTexture(sf::Texture* texture)
+{
+    Entity::SetTexture(texture);
+    collider = new sf::Sprite(*sprite);
 }
