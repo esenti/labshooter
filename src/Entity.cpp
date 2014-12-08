@@ -88,3 +88,9 @@ float Entity::GetRotation()
 {
     return sprite->getRotation();
 }
+
+void Entity::Destroy()
+{
+    markedForDeletion = true;
+    level->MarkForDeletion(this);
+}

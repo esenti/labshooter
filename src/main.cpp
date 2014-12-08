@@ -2,6 +2,8 @@
 #include "Level.h"
 #include <vector>
 #include <iostream>
+#include <time.h>include
+#include <random>
 
 void move(float x, float y, sf::Sprite& sprite, sf::Sprite obstacle)
 {
@@ -16,6 +18,7 @@ Level level;
 
 int main()
 {
+    srand(time(0));
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 

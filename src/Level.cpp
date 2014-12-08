@@ -10,6 +10,7 @@
 #include "Entity.h"
 #include "Entities/Player.h"
 #include "Entities/Block.h"
+#include "Entities/Explosion.h"
 #include "ResourceCache.h"
 
 
@@ -45,6 +46,10 @@ void Level::LoadLevel(const std::string& path)
     Entity* p2 = new Player(1);
     p2->SetTexture(ResourceCache::LoadTexture("assets/player.png"));
     Entities.push_back(p2);*/
+    
+    Entity* explosion = new Explosion();
+    Entities.push_back(explosion);
+    
     std::ifstream file;
     file.open(path);
     if(file.is_open())
