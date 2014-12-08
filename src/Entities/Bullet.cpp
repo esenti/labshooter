@@ -2,19 +2,19 @@
 #include "ResourceCache.h"
 #include "Level.h"
 
-Bullet::Bullet(sf::Vector2f dir): dir(dir)
+Bullet::Bullet(sf::Vector2f dir, int index, std::string target): dir(dir), index(index), target(target)
 {
     SetTexture(ResourceCache::LoadTexture("assets/particle.png"));
 }
 
 void Bullet::Update(float dt)
 {
-	Move(dir * dt * 0.5f);
+	Move(dir * dt * 0.2f);
 	auto collisions = level->getCollisions(this);
 
 	if(collisions.size())
 	{
-		collisions[0].first->Hit(5);
+		collisions[0].first->Hit(5, index);
 		level->MarkForDeletion(this);
 	}
 }
@@ -26,5 +26,5 @@ std::string Bullet::GetTag()
 
 bool Bullet::CollidesWith(Entity* e, sf::FloatRect& collision)
 {
-    return (e->GetTag() == "environment" || e->GetTag() == "player") && sprite->getGlobalBounds().intersects(e->sprite->getGlobalBounds(), collision);
+    return (e->GetTag() == "environment" || e->GetTag() == target) && sprite->getGlobalBounds().intersects(e->sprite->getGlobalBounds(), collision);
 }

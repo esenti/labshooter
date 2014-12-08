@@ -3,9 +3,16 @@
 #include "Level.h"
 #include "Bullet.h"
 
-Turret::Turret(): toBullet(300)
+Turret::Turret(int index): toBullet(300), index(index), hp(10)
 {
-    SetTexture(ResourceCache::LoadTexture("assets/turret.png"));
+	if(index == 0)
+	{
+	    SetTexture(ResourceCache::LoadTexture("assets/turret1.png"));
+	}
+	else
+	{
+	    SetTexture(ResourceCache::LoadTexture("assets/turret2.png"));
+	}
 }
 
 std::string Turret::GetTag()
@@ -27,7 +34,6 @@ sf::Vector2f normalize(const sf::Vector2f& source)
         return source;
 }
 
-#include <iostream>
 void Turret::Update(float dt)
 {
 	toBullet -= dt;
@@ -45,9 +51,21 @@ void Turret::Update(float dt)
 		transform.rotate(180);
 		toBullet = 300;
 		// Entity* b = new Bullet(transform.transformPoint(sf::Vector2f(0.0, -1.0)));
-		Entity* b = new Bullet(toTarget);
+		Entity* b = new Bullet(toTarget, index, "player");
 		b->SetTexture(ResourceCache::LoadTexture("assets/particle.png"));
 		b->SetPosition(sprite->getPosition());
 		level->Spawn(b);
+	}
+}
+
+void Turret::Hit(float dmg, int i)
+{
+	if(i == index)
+	{
+		hp -= dmg;
+		if(hp <= 0)
+		{
+			level->MarkForDeletion(this);
+		}
 	}
 }

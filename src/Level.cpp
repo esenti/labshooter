@@ -145,7 +145,10 @@ void Level::SpawnEntity(char classToSpawn, sf::Vector2f position)
             player2 = e;
             break;
         case 'T':
-            e = new Turret();
+            e = new Turret(0);
+            break;
+        case 't':
+            e = new Turret(1);
             break;
 
         default:
