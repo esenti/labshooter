@@ -19,16 +19,31 @@
 class Entity;
 class Level
 {
+public:
+    enum State {
+        MENU,
+        PLAYING,
+        OVER,
+        WIN,
+    };
+
 private:
     std::vector<Entity*> Entities;
     std::vector<Entity*> PendingDeletion;
     void ParseLevel(std::ifstream& handle);
+    State state;
+    sf::Text over;
+    sf::Text space;
+    sf::Text win;
+    sf::Font font;
 
 public:
+    Level();
     void LoadLevel(const std::string& path);
     void Render(sf::RenderWindow* window);
     void Update(float dt);
     void MarkForDeletion(Entity* ent);
+    // T - Turret
     // B - Block
     // 1 - Player 1
     // 2 - Player 2
@@ -36,6 +51,10 @@ public:
 
     void Spawn(Entity* entity);
     std::vector<std::pair<Entity*, sf::FloatRect>> getCollisions(Entity* entity);
+    void SetState(State s);
+
+    Entity* player1;
+    Entity* player2;
 };
 
 #endif /* defined(__labshooter__Level__) */

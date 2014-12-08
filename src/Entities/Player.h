@@ -19,9 +19,11 @@ public:
     virtual void Update(float dt) override;
     virtual bool CollidesWith(Entity* e, sf::FloatRect& collision);
     virtual void SetTexture(sf::Texture* texture);
+    virtual void Hit(float dmg, int index);
     virtual std::string GetTag();
     float rotationRate;
     float maxSpeed;
+    float hp;
 protected:
 	int index;
 	int toBullet;

@@ -16,4 +16,4 @@ clean:
 	$(RM) $(OBJS)
 
 dist-clean: clean
-	$(RM) tool
+	$(RM) labshooter

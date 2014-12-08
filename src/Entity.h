@@ -22,8 +22,8 @@ protected:
     bool hasMoved;
     Level* level;
     bool markedForDeletion;
-    
-    
+
+
 
 public:
     sf::Sprite* sprite;
@@ -34,6 +34,7 @@ public:
     virtual bool CollidesWith(Entity* e, sf::FloatRect& collision);
     virtual void SetTexture(sf::Texture* texture);
     virtual std::string GetTag() = 0;
+    virtual void Hit(float dmg, int index) {};
     void Move(sf::Vector2f delta); //Move character to given position
     void Rotate(float angle);
     void SetPosition(sf::Vector2f absolutePosition);

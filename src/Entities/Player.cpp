@@ -13,7 +13,7 @@
 #include "ResourceCache.h"
 
 
-Player::Player(int i) : Entity(), rotationRate(0.5f), maxSpeed(.5), index(i), toBullet(500)
+Player::Player(int i) : Entity(), rotationRate(0.4f), maxSpeed(.5), hp(100), index(i), toBullet(300)
 {
 }
 
@@ -89,8 +89,8 @@ void Player::Update(float dt)
     {
         sf::Transform transform;
         transform.rotate(GetRotation());
-        toBullet = 500;
-        Entity* b = new Bullet(transform.transformPoint(sf::Vector2f(0.0, -1.0)));
+        toBullet = 300;
+        Entity* b = new Bullet(transform.transformPoint(sf::Vector2f(0.0, -1.0)), index, "enemy");
         //b->SetTexture(ResourceCache::LoadTexture("assets/tile.png"));
         b->SetPosition(sprite->getPosition());
         level->Spawn(b);
@@ -111,4 +111,15 @@ void Player::SetTexture(sf::Texture* texture)
 std::string Player::GetTag()
 {
     return "player";
+}
+#include <iostream>
+void Player::Hit(float dmg, int index)
+{
+    hp -= dmg;
+    std::cout << index << ": " << hp << std::endl;
+    if(hp <= 0)
+    {
+        level->MarkForDeletion(this);
+        level->SetState(Level::State::OVER);
+    }
 }
