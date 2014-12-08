@@ -87,8 +87,10 @@ void Player::Update(float dt)
     toBullet -= dt;
     if(sf::Keyboard::isKeyPressed((index == 0) ? sf::Keyboard::Space : sf::Keyboard::LControl) && toBullet <= 0)
     {
+        sf::Transform transform;
+        transform.rotate(GetRotation());
         toBullet = 500;
-        Entity* b = new Bullet(sf::Vector2f(1.0, 1.0));
+        Entity* b = new Bullet(transform.transformPoint(sf::Vector2f(0.0, -1.0)));
         b->SetTexture(ResourceCache::LoadTexture("assets/tile.png"));
         b->SetPosition(sprite->getPosition());
         level->Spawn(b);
