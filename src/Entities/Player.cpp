@@ -13,7 +13,7 @@
 #include "ResourceCache.h"
 
 
-Player::Player(int i) : Entity(), rotationRate(0.5f), maxSpeed(.5), index(i), toBullet(300)
+Player::Player(int i) : Entity(), rotationRate(0.5f), maxSpeed(.5), hp(40), index(i), toBullet(300)
 {
 }
 
@@ -111,4 +111,14 @@ void Player::SetTexture(sf::Texture* texture)
 std::string Player::GetTag()
 {
     return "player";
+}
+
+void Player::Hit(float dmg)
+{
+    hp -= dmg;
+    if(hp <= 0)
+    {
+        level->MarkForDeletion(this);
+        level->SetState(Level::State::OVER);
+    }
 }

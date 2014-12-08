@@ -14,6 +14,30 @@
 #include "ResourceCache.h"
 
 
+Level::Level()
+{
+    font.loadFromFile("assets/visitor1.ttf");
+    over.setFont(font);
+    over.setString("GAME OVER");
+    over.setCharacterSize(80);
+    over.setColor(sf::Color::Black);
+    over.setStyle(sf::Text::Regular);
+    sf::FloatRect textRect = over.getLocalBounds();
+    over.setOrigin(textRect.left + textRect.width/2.0f,
+                   textRect.top  + textRect.height/2.0f);
+    over.setPosition(sf::Vector2f(800/2.0f, 600/2.0f));
+
+    space.setFont(font);
+    space.setString("SPACE TO START");
+    space.setCharacterSize(80);
+    space.setColor(sf::Color::Black);
+    space.setStyle(sf::Text::Regular);
+    textRect = space.getLocalBounds();
+    space.setOrigin(textRect.left + textRect.width/2.0f,
+                   textRect.top  + textRect.height/2.0f);
+    space.setPosition(sf::Vector2f(800/2.0f, 600/2.0f));
+}
+
 void Level::ParseLevel(std::ifstream& handle)
 {
     //int filesize = fseek(handle, 0, 2);
@@ -62,25 +86,45 @@ void Level::Render(sf::RenderWindow* window)
         it->Draw(window);
     }
 
+    if(state == OVER)
+    {
+        window->draw(over);
+    }
+    else if(state == MENU)
+    {
+        window->draw(space);
+    }
 }
 void Level::Update(float dt)
 {
-    for(unsigned int i = 0; i < Entities.size(); ++i)
+    switch(state)
     {
-        Entities[i]->Update(dt);
-    }
-
-    if(PendingDeletion.size() > 0)
-    {
-        for(auto& e : PendingDeletion)
+    case MENU:
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         {
-            Entities.erase(std::remove(Entities.begin(), Entities.end(), e), Entities.end());
-
-            delete e;
+            SetState(PLAYING);
         }
-    PendingDeletion.clear();
-    }
+        break;
+    case OVER:
+        break;
+    case PLAYING:
+        for(unsigned int i = 0; i < Entities.size(); ++i)
+        {
+            Entities[i]->Update(dt);
+        }
 
+        if(PendingDeletion.size() > 0)
+        {
+            for(auto& e : PendingDeletion)
+            {
+                Entities.erase(std::remove(Entities.begin(), Entities.end(), e), Entities.end());
+
+                delete e;
+            }
+        PendingDeletion.clear();
+        }
+        break;
+    }
 }
 
 void Level::SpawnEntity(char classToSpawn, sf::Vector2f position)
@@ -139,4 +183,9 @@ std::vector<std::pair<Entity*, sf::FloatRect>> Level::getCollisions(Entity* enti
     }
 
     return result;
+}
+
+void Level::SetState(Level::State s)
+{
+    state = s;
 }

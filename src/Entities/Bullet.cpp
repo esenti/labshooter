@@ -10,9 +10,11 @@ Bullet::Bullet(sf::Vector2f dir): dir(dir)
 void Bullet::Update(float dt)
 {
 	Move(dir * dt * 0.5f);
+	auto collisions = level->getCollisions(this);
 
-	if(level->getCollisions(this).size())
+	if(collisions.size())
 	{
+		collisions[0].first->Hit(5);
 		level->MarkForDeletion(this);
 	}
 }

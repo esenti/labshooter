@@ -19,12 +19,24 @@
 class Entity;
 class Level
 {
+public:
+    enum State {
+        MENU,
+        PLAYING,
+        OVER,
+    };
+
 private:
     std::vector<Entity*> Entities;
     std::vector<Entity*> PendingDeletion;
     void ParseLevel(std::ifstream& handle);
+    State state;
+    sf::Text over;
+    sf::Text space;
+    sf::Font font;
 
 public:
+    Level();
     void LoadLevel(const std::string& path);
     void Render(sf::RenderWindow* window);
     void Update(float dt);
@@ -37,6 +49,7 @@ public:
 
     void Spawn(Entity* entity);
     std::vector<std::pair<Entity*, sf::FloatRect>> getCollisions(Entity* entity);
+    void SetState(State s);
 
     Entity* player1;
     Entity* player2;
